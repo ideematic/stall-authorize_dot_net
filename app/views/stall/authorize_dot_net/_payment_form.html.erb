@@ -1,0 +1,48 @@
+<% payment_service_for(request.gateway.transaction_id, request.gateway.account, service: :authorize_net_sim, amount: request.cart.total_price) do |service|
+   # You must call setup_hash and invoice
+   service.setup_hash transaction_key: request.gateway.transaction_key,
+                      order_timestamp: Time.now.to_i
+
+   service.customer_id request.cart.customer.id
+
+   service.customer first_name: request.cart.billing_address.first_name,
+                    last_name: request.cart.billing_address.last_name,
+                    email: request.cart.customer.email
+
+  service.billing_address zip: request.cart.billing_address.zip,
+                          country: request.cart.billing_address.country_name,
+                          address1: request.cart.billing_address.address,
+                          city: request.cart.billing_address.city
+
+
+  service.ship_to_address first_name: request.cart.shipping_address.first_name,
+                          last_name: request.cart.shipping_address.last_name,
+                          city: request.cart.shipping_address.city,
+                          address1: request.cart.shipping_address.address,
+                          address2: request.cart.shipping_address.address_details,
+                          state: request.cart.shipping_address.state,
+                          country: request.cart.shipping_address.country_name,
+                          zip: request.cart.shipping_address.zip
+
+  service.invoice request.cart.reference # your invoice number
+
+  # The end-user is presented with the HTML produced by the notify_url.
+  service.notify_url request.gateway.payment_urls.payment_notification_url
+  service.payment_header Stall.config.store_name
+
+  # service.add_line_item name: 'item name', quantity: 1, unit_price: 0
+
+  # service.test_request 'true' # only if it's just a test
+  # service.shipping '25.0'
+
+  # Tell it to display a "0" line item for shipping, with the price in
+  # the name, otherwise it isn't shown at all, leaving the end user to
+  # wonder why the total is different than the sum of the line items.
+  # service.add_shipping_as_line_item
+  # server.add_tax_as_line_item # same with tax
+  # See the helper.rb file for various custom fields
+%>
+  <button type="submit" class="btn btn-primary">
+    <%= t('stall.payments.gateway.pay') %>
+  </button>
+<% end %>
