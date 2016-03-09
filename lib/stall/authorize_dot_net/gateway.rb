@@ -66,7 +66,7 @@ module Stall
           puts "****************",
                "Acknowledge authorize payment with : #{ gateway.md5_hash }, #{ gateway.account } (#{ gateway.inspect })",
                "----------------",
-               " Params : #{ params.inspect }"
+               " Params : #{ notification.params.inspect }"
                "****************"
 
           @valid ||= notification.acknowledge(gateway.md5_hash, gateway.account)
