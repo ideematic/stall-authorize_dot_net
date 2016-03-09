@@ -1,0 +1,5 @@
+%h1= t('stall.authorize_dot_net.relay_response.error.title')
+
+%p= t('stall.authorize_dot_net.relay_response.error.help')
+
+= link_to t('stall.authorize_dot_net.relay_response.error.action'), response.gateway.payment_urls.payment_failure_return_url
