@@ -64,7 +64,7 @@ module Stall
         def relay_response_partial_path
           [
             'stall/authorize_dot_net/',
-            (success? 'success' : 'error'),
+            (success? ? 'success' : 'error'),
             '_relay_response'
           ].join
         end
