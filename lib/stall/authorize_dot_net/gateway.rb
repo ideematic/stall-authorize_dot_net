@@ -73,6 +73,14 @@ module Stall
           cart.payment.pay! if success?
         end
 
+        def gateway
+          @gateway = Stall::AuthorizeDotNet::Gateway
+        end
+
+        def cart
+          @cart ||= Cart.find_by_reference(notification.invoice_num)
+        end
+
         private
 
         def notification
@@ -80,14 +88,6 @@ module Stall
             OffsitePayments::Integrations::AuthorizeNetSim::Notification.new(
               request.raw_post
             )
-        end
-
-        def cart
-          @cart ||= Cart.find_by_reference(notification.invoice_num)
-        end
-
-        def gateway
-          @gateway = Stall::AuthorizeDotNet::Gateway
         end
       end
     end
