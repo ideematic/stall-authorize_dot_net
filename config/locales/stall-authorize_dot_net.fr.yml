@@ -1,0 +1,10 @@
+fr:
+  stall:
+    authorize_dot_net:
+      relay_response:
+        success:
+          title: "Paiement effectué"
+          help: |
+            Votre paiement a bien été pris en compte par le système
+            Authorize.net.
+          action: "Retourner à la boutique"

@@ -1,0 +1,10 @@
+en:
+  stall:
+    authorize_dot_net:
+      relay_response:
+        success:
+          title: "Payment successful"
+          help: |
+            Your payment has been successfully processed by the Authorize.net
+            service.
+          action: "Back to the shop"

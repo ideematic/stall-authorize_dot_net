@@ -1,9 +1,5 @@
-%html
-  %head
-    %meta{ charset: 'utf-8' }
-    %title Payment success
+%h1= t('stall.authorize_dot_net.relay_response.success.title')
 
-  %body
-    %p Payment successful !
+%p= t('stall.authorize_dot_net.relay_response.success.help')
 
-    = link_to 'Back to merchant', response.gateway.payment_urls.payment_success_return_url
+= link_to t('stall.authorize_dot_net.relay_response.success.action'), response.gateway.payment_urls.payment_success_return_url

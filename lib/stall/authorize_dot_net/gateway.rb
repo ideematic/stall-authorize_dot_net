@@ -56,9 +56,17 @@ module Stall
 
         def rendering_options
           {
-            partial: 'stall/authorize_dot_net/relay_response',
+            file: relay_response_partial_path,
             locals: { response: self }
           }
+        end
+
+        def relay_response_partial_path
+          [
+            'stall/authorize_dot_net/',
+            (success? 'success' : 'error'),
+            '_relay_response'
+          ].join
         end
 
         def success?
