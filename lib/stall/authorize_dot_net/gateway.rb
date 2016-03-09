@@ -58,7 +58,11 @@ module Stall
         end
 
         def success?
-          notification.acknowledge && notification.complete?
+          @success ||= valid? && notification.complete?
+        end
+
+        def valid?
+          @valid ||= notification.acknowledge
         end
 
         def notify
