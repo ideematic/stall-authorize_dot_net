@@ -37,6 +37,12 @@ so ideally, just create the following env vars :
 
 - `AUTHORIZE_NET_ACCOUNT`
 - `AUTHORIZE_NET_TRANSACTION_KEY`
+- `AUTHORIZE_NET_MD5_HASH`
+
+Note that you **must** set the `AUTHORIZE_NET_MD5_HASH` value in your
+Authorize.net account security "MD5 Hash" section. This acts as a token
+used to authenticate Authorize.net incoming requests for payment notifications.
+More informations : https://support.authorize.net/authkb/index?page=content&id=A588
 
 Restart your server, and you should now be able to use the Authorize.net payment
 gateway in test mode.
@@ -48,6 +54,14 @@ variable :
 
 Just like the other settings, you can change the way it's configured in the
 stall initializer file.
+
+### Sandbox account
+
+By default, the Authorize.net gateway is configured to run in test mode.
+
+To run your tests, you'll want to create a Sandbox account at :
+https://sandbox.authorize.net and use the provided credentials to run your
+payment tests, before switching to production with your real credentials.
 
 ### Automatic response URL
 

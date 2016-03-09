@@ -5,6 +5,7 @@ module Stall
 
       class_attribute :account
       class_attribute :transaction_key
+      class_attribute :md5_hash
 
       # Test or production mode, default to false, changes the payment
       # gateway target URL
@@ -62,7 +63,7 @@ module Stall
         end
 
         def valid?
-          @valid ||= notification.acknowledge
+          @valid ||= notification.acknowledge(md5_hash, account)
         end
 
         def notify

@@ -7,6 +7,8 @@
     # Your authorize.net transaction key
     authorize_dot_net.transaction_key = ENV['AUTHORIZE_NET_TRANSACTION_KEY']
 
+    authorize_dot_net.md5_hash = ENV['AUTHORIZE_NET_MD5_HASH']
+
     # Test or production mode, default to false, changes the payment
     # gateway target URL
     #
