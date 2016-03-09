@@ -63,6 +63,12 @@ module Stall
         end
 
         def valid?
+          puts "****************",
+               "Acknowledge authorize payment with : #{ gateway.md5_hash }, #{ gateway.account } (#{ gateway.inspect })",
+               "----------------",
+               " Params : #{ params.inspect }"
+               "****************"
+
           @valid ||= notification.acknowledge(gateway.md5_hash, gateway.account)
         end
 

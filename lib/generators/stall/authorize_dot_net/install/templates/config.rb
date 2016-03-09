@@ -6,7 +6,8 @@
     authorize_dot_net.account = ENV['AUTHORIZE_NET_ACCOUNT']
     # Your authorize.net transaction key
     authorize_dot_net.transaction_key = ENV['AUTHORIZE_NET_TRANSACTION_KEY']
-
+    # The authorize.net md5 hash filled in your customer interface to
+    # authenticate incoming gateway requests
     authorize_dot_net.md5_hash = ENV['AUTHORIZE_NET_MD5_HASH']
 
     # Test or production mode, default to false, changes the payment
