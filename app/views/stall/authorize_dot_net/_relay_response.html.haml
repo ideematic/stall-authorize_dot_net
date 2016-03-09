@@ -1,0 +1,9 @@
+%html
+  %head
+    %meta{ charset: 'utf-8' }
+    %title Payment success
+
+  %body
+    %p Payment successful !
+
+    = link_to 'Back to merchant', response.gateway.payment_urls.payment_success_return_url

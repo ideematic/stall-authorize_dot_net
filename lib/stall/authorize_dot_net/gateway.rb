@@ -55,7 +55,10 @@ module Stall
         end
 
         def rendering_options
-          { nothing: true }
+          {
+            partial: 'stall/authorize_dot_net/relay_response',
+            locals: { response: self }
+          }
         end
 
         def success?
@@ -63,12 +66,6 @@ module Stall
         end
 
         def valid?
-          puts "****************",
-               "Acknowledge authorize payment with : #{ gateway.md5_hash }, #{ gateway.account } (#{ gateway.inspect })",
-               "----------------",
-               " Params : #{ notification.params.inspect }"
-               "****************"
-
           @valid ||= notification.acknowledge(gateway.md5_hash, gateway.account)
         end
 
