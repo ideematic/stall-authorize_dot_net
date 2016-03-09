@@ -63,7 +63,7 @@ module Stall
         end
 
         def valid?
-          @valid ||= notification.acknowledge(md5_hash, account)
+          @valid ||= notification.acknowledge(gateway.md5_hash, gateway.account)
         end
 
         def notify
