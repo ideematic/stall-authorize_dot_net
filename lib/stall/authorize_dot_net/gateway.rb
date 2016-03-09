@@ -74,7 +74,7 @@ module Stall
         end
 
         def gateway
-          @gateway = Stall::AuthorizeDotNet::Gateway
+          @gateway ||= Stall::AuthorizeDotNet::Gateway.new(cart)
         end
 
         def cart
