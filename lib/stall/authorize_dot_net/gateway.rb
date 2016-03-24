@@ -55,10 +55,7 @@ module Stall
         end
 
         def rendering_options
-          {
-            file: relay_response_partial_path,
-            locals: { response: self }
-          }
+          { file: relay_response_partial_path, layout: false }
         end
 
         def relay_response_partial_path

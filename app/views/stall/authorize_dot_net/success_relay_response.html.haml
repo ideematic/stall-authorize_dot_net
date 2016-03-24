@@ -1,5 +1,2 @@
-%h1= t('stall.authorize_dot_net.relay_response.success.title')
-
-%p= t('stall.authorize_dot_net.relay_response.success.help')
-
-= link_to t('stall.authorize_dot_net.relay_response.success.action'), response.gateway.payment_urls.payment_success_return_url
+:javascript
+  window.location.href = '#{ response.gateway.payment_urls.payment_success_return_url }'
