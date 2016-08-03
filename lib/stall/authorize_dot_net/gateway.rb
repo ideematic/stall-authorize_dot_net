@@ -87,7 +87,7 @@ module Stall
         end
 
         def cart
-          @cart ||= Cart.find_by_reference(notification.invoice_num)
+          @cart ||= ProductList.find_by_reference(notification.invoice_num)
         end
 
         private
