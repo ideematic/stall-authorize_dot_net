@@ -5,17 +5,19 @@
 
    service.customer_id request.cart.customer.id
 
-   service.customer first_name: request.cart.billing_address.first_name,
-                    last_name: request.cart.billing_address.last_name,
+   service.customer first_name: request.cart.billing_address.try(:first_name),
+                    last_name: request.cart.billing_address.try(:last_name),
                     email: request.cart.customer.email
 
-  service.billing_address zip: request.cart.billing_address.zip,
-                          country: request.cart.billing_address.country_name,
-                          address1: request.cart.billing_address.address,
-                          city: request.cart.billing_address.city
+  if request.cart.billing_address
+    service.billing_address zip: request.cart.billing_address.zip,
+                            country: request.cart.billing_address.country_name,
+                            address1: request.cart.billing_address.address,
+                            city: request.cart.billing_address.city
+  end
 
 
-  unless request.cart.shipping_address.nil?
+  if request.cart.shipping_address
     service.ship_to_address first_name: request.cart.shipping_address.first_name,
                             last_name: request.cart.shipping_address.last_name,
                             city: request.cart.shipping_address.city,
