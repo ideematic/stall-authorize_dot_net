@@ -15,14 +15,16 @@
                           city: request.cart.billing_address.city
 
 
-  service.ship_to_address first_name: request.cart.shipping_address.first_name,
-                          last_name: request.cart.shipping_address.last_name,
-                          city: request.cart.shipping_address.city,
-                          address1: request.cart.shipping_address.address,
-                          address2: request.cart.shipping_address.address_details,
-                          state: request.cart.shipping_address.state,
-                          country: request.cart.shipping_address.country_name,
-                          zip: request.cart.shipping_address.zip
+  unless request.cart.shipping_address.nil?
+    service.ship_to_address first_name: request.cart.shipping_address.first_name,
+                            last_name: request.cart.shipping_address.last_name,
+                            city: request.cart.shipping_address.city,
+                            address1: request.cart.shipping_address.address,
+                            address2: request.cart.shipping_address.address_details,
+                            state: request.cart.shipping_address.state,
+                            country: request.cart.shipping_address.country_name,
+                            zip: request.cart.shipping_address.zip
+  end
 
   service.invoice request.cart.reference # your invoice number
 
