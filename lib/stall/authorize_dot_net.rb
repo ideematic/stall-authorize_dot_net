@@ -5,7 +5,6 @@ module Stall
   module AuthorizeDotNet
     extend ActiveSupport::Autoload
 
-    autoload :CicPayment
     autoload :Version
     autoload :FakeGatewayPaymentNotification
   end
