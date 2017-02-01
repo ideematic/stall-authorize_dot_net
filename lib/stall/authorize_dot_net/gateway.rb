@@ -54,6 +54,18 @@ module Stall
           @request = request
         end
 
+        def valid?
+          @valid ||= notification.acknowledge(gateway.md5_hash, gateway.account)
+        end
+
+        def success?
+          @success ||= valid? && notification.complete?
+        end
+
+        def process
+          valid? && success?
+        end
+
         def rendering_options
           {
             file: relay_response_partial_path,
@@ -68,18 +80,6 @@ module Stall
             (success? ? 'success' : 'error'),
             '_relay_response'
           ].join
-        end
-
-        def success?
-          @success ||= valid? && notification.complete?
-        end
-
-        def valid?
-          @valid ||= notification.acknowledge(gateway.md5_hash, gateway.account)
-        end
-
-        def notify
-          cart.payment.pay! if success?
         end
 
         def gateway
